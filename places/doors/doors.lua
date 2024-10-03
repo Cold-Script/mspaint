@@ -86,7 +86,7 @@ local WhitelistConfig = {
 
 local EntityTable = {
     ["Names"] = {"BackdoorRush", "BackdoorLookman", "RushMoving", "AmbushMoving", "Eyes", "JeffTheKiller", "A60", "A120"},
-    ["SideNames"] = {"FigureRig", "GiggleCeiling", "GrumbleRig", "Snare"},
+    ["SideNames"] = {"FigureRagdoll","FigureRig", "GiggleCeiling", "GrumbleRig", "Snare"},
     ["ShortNames"] = {
         ["BackdoorRush"] = "Blitz",
         ["JeffTheKiller"] = "Jeff The Killer"
@@ -204,9 +204,9 @@ local PromptTable = {
         ["ActivateEventPrompt"] = false,
         ["AwesomePrompt"] = true,
         ["FusesPrompt"] = true,
-        ["HerbPrompt"] = false,
+        ["HerbPrompt"] = true,
         ["LeverPrompt"] = true,
-        ["LootPrompt"] = false,
+        ["LootPrompt"] = true,
         ["ModulePrompt"] = true,
         ["SkullPrompt"] = false,
         ["UnlockPrompt"] = true,
@@ -371,7 +371,7 @@ local Toggles = getgenv().Linoria.Toggles
 local ESPLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/mstudio45/MS-ESP/refs/heads/main/source.lua"))()
 
 local Window = Library:CreateWindow({
-    Title = "mspaint v2",
+    Title = "MSPAINT v2.5",
     Center = true,
     AutoShow = true,
     Resizable = true,
@@ -2552,6 +2552,13 @@ end
 
 local MiscGroupBox = Tabs.Main:AddRightGroupbox("Misc") do
     MiscGroupBox:AddButton({
+        Text = "Reset",
+        Func = function()
+            game.Players.LocalPlayers.Character.Humanoid.Health = 0
+        end,
+        DoubleClick = true
+    })
+    MiscGroupBox:AddButton({
         Text = "Revive",
         Func = function()
             remotesFolder.Revive:FireServer()
@@ -2824,6 +2831,8 @@ local AmbientGroupBox = Tabs.Visuals:AddLeftGroupbox("Ambient") do
         Text = "Anti-Lag",
         Default = false,
     })
+game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.MSHNL then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("Chandelier") then game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets").Chandelier:Destroy();end end end);end);game:GetService("RunService").RenderStepped:Connect(function()pcall(function()if _G.MSHNL then if game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets"):FindFirstChild("Light_Fixtures") then game.workspace.CurrentRooms[tostring(game:GetService("ReplicatedStorage").GameData.LatestRoom.Value)]:WaitForChild("Assets").Light_Fixtures:Destroy();end end end);end)
+AmbientGroupBox:AddToggle("Nlight",{Text = "No Light",Default = false,Tooltip = "No Light",Callback = function(NL)_G.MSHNL = NL ;end})           
 end
 
 local NotifyTabBox = Tabs.Visuals:AddRightTabbox() do
@@ -2942,7 +2951,7 @@ task.spawn(function()
                 Text = "Avoid Rush/Ambush",
                 Tooltip = "Doesn't work for greenhouse :(",
                 Default = false,
-                Risky = true
+              
             })
         end
 
