@@ -109,7 +109,7 @@ local PrettyFloorName = {
 
 local EntityTable = {
     ["Names"] = {"BackdoorRush", "BackdoorLookman", "RushMoving", "AmbushMoving", "Eyes", "JeffTheKiller", "A60", "A120"},
-    ["SideNames"] = {"FigureRig", "GiggleCeiling", "GrumbleRig", "Snare"},
+    ["SideNames"] = {"FigureRagdoll", "FigureRig", "GiggleCeiling", "GrumbleRig", "Snare"},
     ["ShortNames"] = {
         ["BackdoorRush"] = "Blitz",
         ["JeffTheKiller"] = "Jeff The Killer"
@@ -387,9 +387,9 @@ type tGroupTrack = {
 }
 
 --// Library \\--
-local repo = "https://raw.githubusercontent.com/mstudio45/LinoriaLib/refs/heads/main/"
+local repo = "https://raw.githubusercontent.com/Cold-Script/Linoria/refs/heads/main/LinoriaLib/"
 
-local Library = loadstring(game:HttpGet(repo .. "Library.lua"))()
+local Library = loadstring(game:HttpGet(repo .. "Library_Loader.lua"))()
 local ThemeManager = loadstring(game:HttpGet(repo .. "addons/ThemeManager.lua"))()
 local SaveManager = loadstring(game:HttpGet(repo .. "addons/SaveManager.lua"))()
 local Options = getgenv().Linoria.Options
@@ -398,7 +398,7 @@ local Toggles = getgenv().Linoria.Toggles
 local ESPLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/mstudio45/MS-ESP/refs/heads/main/source.lua"))()
 
 local Window = Library:CreateWindow({
-    Title = "mspaint v2 | DOORS",
+    Title = "YOUHUB",
     Center = true,
     AutoShow = true,
     Resizable = true,
@@ -409,11 +409,11 @@ local Window = Library:CreateWindow({
 })
 
 local Tabs = {
-    Main = Window:AddTab("Main"),
-    Exploits = Window:AddTab("Exploits"),
-    Visuals = Window:AddTab("Visuals"),
-    Floor = Window:AddTab("Floor"),
-    ["UI Settings"] = Window:AddTab("UI Settings"),
+    Main = Window:AddTab("Main", "rbxassetid://4335489011"),
+    Exploits = Window:AddTab("Exploits", "rbxassetid://10653012630),
+    Visuals = Window:AddTab("Visuals", "rbxassetid://8571432274"),
+    Floor = Window:AddTab("Floor", "rbxassetid://12430667184"),
+    ["UI Settings"] = Window:AddTab("UI Settings", "rbxassetid://12337656591"),
 }
 
 --// Captions \\--
@@ -421,7 +421,7 @@ local _mspaint_custom_captions = Instance.new("ScreenGui") do
     local Frame = Instance.new("Frame", _mspaint_custom_captions)
     local TextLabel = Instance.new("TextLabel", Frame)
     local UITextSizeConstraint = Instance.new("UITextSizeConstraint", TextLabel)
-
+    local UICorner = Instance.new("UICorner", Frame)
     _mspaint_custom_captions.Parent = ReplicatedStorage
     _mspaint_custom_captions.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
@@ -443,7 +443,7 @@ local _mspaint_custom_captions = Instance.new("ScreenGui") do
     TextLabel.TextScaled = true
     TextLabel.TextSize = 14
     TextLabel.TextWrapped = true
-
+    
     UITextSizeConstraint.MaxTextSize = 35
 
     function Script.Functions.Captions(caption: string)
@@ -508,10 +508,10 @@ function Script.Functions.UpdateRPC()
     end
 
     BloxstrapRPC.SetRichPresence({
-        details = "Playing DOORS [ mspaint v2 ]",
+        details = "Playing DOORS",
         state = roomNumberPrefix .. prettifiedRoomNumber .. " (" .. (PrettyFloorName[floor.Value] and PrettyFloorName[floor.Value] or ("The " .. floor.Value) ) .. ")",
         largeImage = {
-            hoverText = "Using mspaint v2"
+            hoverText = "Using YOUHUB"
         },
         smallImage = {
             assetId = 6925817108,
